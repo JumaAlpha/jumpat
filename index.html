@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jumpat Painting and Cleaning Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <style>
+        /* Adding smooth scroll effect */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Parallax effect */
+        .hero-section {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .sticky-section {
+            position: relative;
+            z-index: 0;
+            /* Default position */
+        }
+
+        .sticky-section.sticky {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            /* Keep sticky sections above others */
+        }
+
+        .animate-ping {
+            animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        #about {
+            position: relative;
+            padding-top: 100px;
+            /* Adjust padding to ensure the content is centered vertically */
+        }
+
+        #about .container {
+            z-index: 10;
+        }
+
+        /* Typing effect container */
+        .typing-text {
+            font-size: 18px;
+            color: #f4f4f4;
+            /* Light color for better visibility */
+            line-height: 1.8;
+            margin-top: 20px;
+            white-space: wrap;
+            /* Prevent text from wrapping */
+            display: inline-block;
+            /* Required for the typing effect */
+            overflow: hidden;
+            /* Hide text until typing animation completes */
+            border-right: 3px solid rgba(255, 255, 255, 0.75);
+            letter-spacing: 2px;
+        }
+
+        /* Typing effect animation */
+        .typing-animation {
+            animation: typing 4s steps(50) 1s forwards, blink 0.75s step-end infinite;
+        }
+
+        /* Typing keyframe */
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Cursor blinking effect */
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* Fade-in story paragraphs */
+        .story-container p {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 1s;
+            /* Delay for each paragraph */
+        }
+
+        /* Keyframe for fade-in effect */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Story container for sequencing text */
+        .story-text:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .story-text:nth-child(2) {
+            animation-delay: 5s;
+            /* Delay between each paragraph */
+        }
+
+        .story-text:nth-child(3) {
+            animation-delay: 10s;
+        }
+
+        /* Hover and animation effects for buttons */
+        .btn-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Add 3D effect on service cards */
+        .service-card {
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) rotate(3deg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Advanced Scroll Animations */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-fade.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bg-animate {
+            transition: background-color 0.5s ease;
+        }
+
+        .typing-animation {
+            display: inline-block;
+            width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid rgba(255, 255, 255, 0.75);
+            animation: typing 4s steps(50) 1s forwards, blink 0.75s step-end infinite;
+        }
+
+        /* Add this to your custom CSS file */
+        #services,
+        #about,
+        #testimonials,
+        #contact {
+            position: relative;
+            z-index: 0;
+            /* Ensures sections stack on top of each other */
+        }
+
+        #services.sticky,
+        #about.sticky,
+        #testimonials.sticky,
+        #contact.sticky {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            /* Keep sticky sections above others */
+        }
+
+
+        /* Keyframe for typing effect */
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Cursor blinking effect */
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* Background sliding animation */
+        @keyframes slideBackground {
+            0% {
+                background-position: 100% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .bg-fixed {
+            animation: slideBackground 15s infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-pink-200 via-yellow-200 to-indigo-300">
+
+    <!-- Navbar -->
+    <header id="navbar"
+        class="sticky top-0 bg-gradient-to-r from-red-500 to-yellow-500 text-white z-50 shadow-md bg-opacity-70">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <!-- Logo -->
+            <h1 class="text-xl font-bold">Jumpat</h1>
+
+            <!-- Hamburger Icon for Mobile -->
+            <button id="menu-toggle" class="text-white text-2xl lg:hidden focus:outline-none">
+                &#9776; <!-- Hamburger Icon -->
+            </button>
+
+            <!-- Navigation Links -->
+            <nav id="menu"
+                class="hidden lg:flex flex-col lg:flex-row lg:space-x-4 lg:items-center w-full lg:w-auto bg-gradient-to-r from-red-500 to-yellow-500 lg:bg-transparent lg:static absolute top-16 left-0 z-40 shadow-md lg:shadow-none p-4 lg:p-0">
+                <ul class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
+                    <li><a href="#services" class="hover:underline">Services</a></li>
+                    <li><a href="#about" class="hover:underline">About</a></li>
+                    <li><a href="#testimonials" class="hover:underline">Testimonials</a></li>
+                    <li><a href="#contact" class="hover:underline">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="h-screen flex items-center justify-center text-center text-white relative"
+    style="background-image: url('images/background.jpg'); background-size: cover; background-position: center; background-attachment: fixed; height: 100vh;">
+    <div class="z-10 p-8 rounded-lg">
+        <h2 class="text-4xl font-bold text-yellow-400 transform transition duration-300 hover:scale-105">Your Trusted Painting & Cleaning Experts</h2>
+        <p class="mt-4 text-white">We bring your spaces to life with color and cleanliness.</p>
+        <a href="#services"
+            class="mt-6 inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg">Get Started</a>
+    </div>
+</section>
+
+    <!-- Services Section -->
+    <section id="services" class="min-h-screen flex items-center justify-center bg-transparent text-white sticky-section">
+        <div class="container mx-auto px-4 py-12 rounded-lg shadow-lg scroll-fade" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-center mb-8" data-aos="zoom-in" data-aos-duration="1000">Our Services</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-white h-72 sm:h-80 rounded-lg shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl relative overflow-hidden"
+                    data-aos="fade-right" data-aos-duration="1000"
+                    style="background-image: url('https://via.placeholder.com/600'); background-size: cover; background-position: center;">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 hover:bg-opacity-20 transition-opacity"></div>
+                    <div class="relative z-10 p-4">
+                        <i class="fas fa-paint-roller text-red-600 text-4xl md:text-5xl mb-4"></i>
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 text-red-600">Interior Painting</h3>
+                        <p class="text-sm md:text-base text-white">Transform your interiors with vibrant colors and professional finishes.</p>
+                    </div>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="service-card bg-white h-72 sm:h-80 rounded-lg shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl relative overflow-hidden"
+                    data-aos="fade-up" data-aos-duration="1000"
+                    style="background-image: url('images/ExteriorDesign.jpeg'); background-size: cover; background-position: center;">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 hover:bg-opacity-20 transition-opacity"></div>
+                    <div class="relative z-10 p-4">
+                        <i class="fas fa-paint-roller text-blue-600 text-4xl md:text-5xl mb-4"></i>
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 text-blue-600">Exterior Painting</h3>
+                        <p class="text-sm md:text-base text-white">Enhance your curb appeal with high-quality exterior painting services.</p>
+                    </div>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="service-card bg-white h-72 sm:h-80 rounded-lg shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl relative overflow-hidden"
+                    data-aos="fade-left" data-aos-duration="1000"
+                    style="background-image: url('images/cleaning.jpg'); background-size: cover; background-position: center;">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 hover:bg-opacity-20 transition-opacity"></div>
+                    <div class="relative z-10 p-4">
+                        <i class="fas fa-broom text-purple-600 text-4xl md:text-5xl mb-4"></i>
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 text-purple-600">Deep Cleaning</h3>
+                        <p class="text-sm md:text-base text-white">Experience spotless spaces with our thorough cleaning solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Us Section -->
+    <section id="about" class="min-h-screen flex items-center py-12 scroll-fade bg-fixed relative sticky-section" data-aos="fade-up">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="container mx-auto text-center relative z-10 px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">About Us</h2>
+            <div class="text-base md:text-lg leading-relaxed text-gray-300">
+                <div class="story-container space-y-4">
+                    <p id="story1" class="typing-text"></p>
+                    <p id="story2" class="typing-text"></p>
+                    <p id="story3" class="typing-text"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="h-auto container mx-auto py-12  text-white scroll-fade sticky-section"
+        data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-center mb-12">What Our Clients Say</h2>
+        <div class="flex flex-col md:flex-row lg:flex-row gap-8 justify-center items-center">
+            <div
+                class="bg-gradient-to-r from-blue-600 to-blue-400 p-8 rounded-xl shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl max-w-sm w-full">
+                <div class="flex justify-center mb-6">
+                    <img src="images/user.jpeg" alt="Jane Doe" class="w-20 h-20 rounded-full border-4 border-white">
+                </div>
+                <p class="italic text-center text-xl mb-4">"Juma transformed my home with their amazing painting
+                    services!"</p>
+                <h4 class="text-center text-xl font-semibold text-white">- John Ndege</h4>
+            </div>
+            <div
+                class="bg-gradient-to-r from-green-600 to-green-400 p-8 rounded-xl shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl max-w-sm w-full">
+                <div class="flex justify-center mb-6">
+                    <img src="images/user.jpeg" alt="John Smith" class="w-20 h-20 rounded-full border-4 border-white">
+                </div>
+                <p class="italic text-center text-xl mb-4">"Their deep cleaning service was a game changer for my
+                    office."</p>
+                <h4 class="text-center text-xl font-semibold text-white">- Peter Kiarie</h4>
+            </div>
+
+            <div
+                class="bg-gradient-to-r from-purple-600 to-purple-400 p-8 rounded-xl shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl max-w-sm w-full">
+                <div class="flex justify-center mb-6">
+                    <img src="images/user.jpeg" alt="Sarah Lee" class="w-20 h-20 rounded-full border-4 border-white">
+                </div>
+                <p class="italic text-center text-xl mb-4">"Professional and efficient. Highly recommend Jumpat!"</p>
+                <h4 class="text-center text-xl font-semibold text-white">- Benard Wambua</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="h-screen bg-gradient-to-r from-red-500 via-yellow-400 to-orange-300 py-12"
+        data-aos="fade-up">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">Get in Touch</h2>
+            <p class="mb-4 text-white">Have a question or ready to book? Contact us today!</p>
+            <form id="contactForm" class="bg-white text-blue-600 p-6 rounded-lg max-w-md mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="block text-left font-bold mb-2">Name:</label>
+                    <input type="text" id="name" name="name" class="w-full border border-gray-300 p-2 rounded-lg"
+                        required>
+                    <p id="nameError" class="text-red-500 text-sm mt-1 hidden">Please enter your name.</p>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-left font-bold mb-2">Email:</label>
+                    <input type="email" id="email" name="email" class="w-full border border-gray-300 p-2 rounded-lg"
+                        required>
+                    <p id="emailError" class="text-red-500 text-sm mt-1 hidden">Please enter a valid email address.</p>
+                </div>
+                <div class="mb-4">
+                    <label for="service" class="block text-left font-bold mb-2">Service Needed:</label>
+                    <select id="service" name="service" class="w-full border border-gray-300 p-2 rounded-lg" required>
+                        <option value="Interior Painting">Interior Painting</option>
+                        <option value="Exterior Painting">Exterior Painting</option>
+                        <option value="Deep Cleaning">Deep Cleaning</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="contactMethod" class="block text-left font-bold mb-2">Preferred Contact Method:</label>
+                    <select id="contactMethod" name="contactMethod" class="w-full border border-gray-300 p-2 rounded-lg"
+                        required>
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="Gmail">Gmail</option>
+                        <option value="Text Message">Text Message</option>
+                    </select>
+                </div>
+                <div class="mb-4" id="phoneField" class="hidden">
+                    <label for="phone" class="block text-left font-bold mb-2">Phone Number (for WhatsApp or Text
+                        Message):</label>
+                    <input type="tel" id="phone" name="phone" class="w-full border border-gray-300 p-2 rounded-lg">
+                    <p id="phoneError" class="text-red-500 text-sm mt-1 hidden">Please enter a valid phone number.</p>
+                </div>
+                <button type="submit"
+                    class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg btn-hover">Submit</button>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- Booking Form -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const serviceInput = document.getElementById('service');
+            const contactMethodInput = document.getElementById('contactMethod');
+            const phoneInput = document.getElementById('phone');
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const phoneError = document.getElementById('phoneError');
+
+            let isValid = true;
+
+            // Validate Name
+            if (nameInput.value.trim() === '') {
+                nameError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                nameError.classList.add('hidden');
+            }
+
+            // Validate Email
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailInput.value.trim())) {
+                emailError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                emailError.classList.add('hidden');
+            }
+
+            // Validate Phone (for WhatsApp or Text Message)
+            if (contactMethodInput.value !== 'Gmail' && phoneInput.value.trim() === '') {
+                phoneError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                phoneError.classList.add('hidden');
+            }
+
+            if (isValid) {
+                const formData = {
+                    name: nameInput.value,
+                    email: emailInput.value,
+                    service: serviceInput.value,
+                    contactMethod: contactMethodInput.value,
+                    phone: "+254714717379", // Fixed number for WhatsApp and Text Message
+                };
+
+                if (formData.contactMethod === 'WhatsApp') {
+                    const message = `Hello, my name is ${formData.name}. I need ${formData.service}.`;
+                    const encodedMessage = encodeURIComponent(message);
+                    window.open(`https://wa.me/${formData.phone}?text=${encodedMessage}`, '_blank');
+                } else if (formData.contactMethod === 'Gmail') {
+                    const recipientEmail = "joseckjuma56@gmail.com"; // Fixed Gmail address
+                    const subject = "Service Request";
+                    const body = `Hello, my name is ${formData.name}. I need ${formData.service}.`;
+                    window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                } else if (formData.contactMethod === 'Text Message') {
+                    const smsMessage = `Hello, my name is ${formData.name}. I need ${formData.service}.`;
+                    alert(`Send the following text to ${formData.phone}: ${smsMessage}`);
+                }
+
+                alert('Thank you for contacting us! We will get back to you shortly.');
+            }
+        });
+
+        // Show or hide phone field based on contact method
+        document.getElementById('contactMethod').addEventListener('change', function () {
+            const phoneField = document.getElementById('phoneField');
+            if (this.value === 'WhatsApp' || this.value === 'Text Message') {
+                phoneField.classList.remove('hidden');
+            } else {
+                phoneField.classList.add('hidden');
+            }
+        });
+    </script>
+
+<script>
+    // Toggle menu visibility for mobile screens
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+
+    menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+    });
+</script>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p>&copy; 2024 Jumpat Painting & Cleaning Service. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 3200,
+        });
+
+        // Advanced Scroll Animations (fade-in effect for sections)
+        window.addEventListener('scroll', () => {
+            const elements = document.querySelectorAll('.scroll-fade');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top <= window.innerHeight) {
+                    el.classList.add('in-view');
+                }
+            });
+        });
+
+        // Adding event listener for scroll to change navbar opacity
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-opacity-90');  // More opaque when scrolling
+            } else {
+                navbar.classList.remove('bg-opacity-90');  // Default opacity
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Typing Animation for About Us section
+        function typeText(element, text, speed, callback) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            type();
+        }
+
+        // Trigger typing animation when the page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            const story1 = document.getElementById('story1');
+            const story2 = document.getElementById('story2');
+            const story3 = document.getElementById('story3');
+
+            const story1Text = "At Jumpat Painting and Cleaning Service, we pride ourselves on delivering top-notch services tailored to meet our clients' unique needs. Our team is dedicated to transforming your spaces with professionalism and care.";
+            const story2Text = "Our experts are equipped with the latest tools and techniques, ensuring that each project is completed with precision and quality. We take the time to understand our clients’ preferences and deliver exceptional results every time.";
+            const story3Text = "Whether it is a simple home painting or a large commercial cleaning, we handle every job with the same level of dedication and attention to detail. Jumpat Painting and Cleaning is here to bring your vision to life, making your spaces shine like new.";
+
+            // Typing effect for each story with a delay between them
+            typeText(story1, story1Text, 50, () => {
+                setTimeout(() => {
+                    typeText(story2, story2Text, 50, () => {
+                        setTimeout(() => {
+                            typeText(story3, story3Text, 50);
+                        }, 1000);
+                    });
+                }, 1000);
+            });
+        });
+    </script>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
